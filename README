@@ -12,4 +12,20 @@ Spielkram:
 	- mehrere verschiedene Gegnertypen mit verschiedenen Stärken 
 
 Tech: 
-? 
+
+	Klassen:
+		- Raumschiff
+		- Waffen/Projektile
+		- Gegner
+			- Verschidene Gegner durch Subklassen
+	
+	Kollision/Treffer werden von der Raumschiff- bzw. Gegnerklasse geprüft.
+	Raumschiff => Gegner, Raumschiff => Projektile
+	Gegner => Projektile
+	
+	Projektile haben eine Friend/Foe Variable die bestimmt wer sie
+	abgefeuert hat sowie die Flugrichtung.
+	
+	Gescriptete Sequenzen werden über eine Zeitsteuerung die Events anhand
+	eines zweidimensionalen Arrays ((Framecount oder Zeit) - Event) abarbeitet.
+	
