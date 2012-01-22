@@ -36,7 +36,7 @@ public class Ship {
 	
 	public static void draw() {
 		p.fill(255);
-		p.triangle(x - 10, y - 10, x + 10, y, x - 10, y + 10);
+		p.triangle(p.mouseX - 10, p.mouseY - 10, p.mouseX + 10, p.mouseY, p.mouseX - 10, p.mouseY + 10);
 	}
 
 }
