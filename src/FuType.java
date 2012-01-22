@@ -12,10 +12,7 @@ public class FuType extends PApplet {
 
 		for (int i = 0; i < bgx.length; i++) {
 			bgx[i].p = this;
-			//bgx[i] = new Bagr();
-			bgx[i].x = random(0, width);
-			bgx[i].y = random(0, height);
-			bgx[i].s = 1;
+			bgx[i] = new BG();
 		}
 
 	}
