@@ -1,30 +1,41 @@
 import processing.core.*;
 
 public class FuType extends PApplet {
+	BG bgx[] = new BG[100];
 
 	public void setup() {
+		frameRate(30);
 		size(800, 600);
 		Ship s1 = new Ship(100, 100);
 		Ship.p = this;
-		Weapon w[] = new Weapon[200];
-		
+		// Weapon w[] = new Weapon[200];
+
+		for (int i = 0; i < bgx.length; i++) {
+			bgx[i].p = this;
+			//bgx[i] = new Bagr();
+			bgx[i].x = random(0, width);
+			bgx[i].y = random(0, height);
+			bgx[i].s = 1;
+		}
+
 	}
 
 	public void draw() {
 		background(0);
 		Ship.draw();
 
-	if (keyPressed) {
+		for (int i = 0; i < bgx.length; i++) {
+			bgx[i].draw();
+			bgx[i].move();
+		}
+		if (keyPressed) {
 			if (key == 's') {
 				Ship.moveDown();
-			}
-			else if (key == 'w') {
+			} else if (key == 'w') {
 				Ship.moveUp();
-			}
-			else if (key == 'a') {
+			} else if (key == 'a') {
 				Ship.moveLeft();
-			}
-			else if (key == 'd') {
+			} else if (key == 'd') {
 				Ship.moveRight();
 			}
 		}
