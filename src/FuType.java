@@ -1,7 +1,10 @@
+import java.util.ArrayList;
 import processing.core.*;
 
 public class FuType extends PApplet {
-	BG bgx[] = new BG[100];
+	BG bg[] = new BG[100];
+	ArrayList shots = new ArrayList();
+	Weapon shot;
 
 	public void setup() {
 		noCursor();
@@ -11,9 +14,9 @@ public class FuType extends PApplet {
 		Ship.p = this;
 		// Weapon w[] = new Weapon[200];
 
-		for (int i = 0; i < bgx.length; i++) {
-			bgx[i].p = this;
-			bgx[i] = new BG();
+		for (int i = 0; i < bg.length; i++) {
+			bg[i].p = this;
+			bg[i] = new BG();
 		}
 
 	}
@@ -22,10 +25,28 @@ public class FuType extends PApplet {
 		background(0);
 		Ship.draw();
 
-		for (int i = 0; i < bgx.length; i++) {
-			bgx[i].draw();
-			bgx[i].move();
+		for (int i = 0; i < bg.length; i++) {
+			bg[i].draw();
+			bg[i].move();
 		}
+
+		if (shots.size() > 0) {
+			for (int i = 0; i < shots.size(); i++) {
+				Weapon shot = (Weapon) shots.get(i);
+				if (shot.x < width && shot.x > 0) {
+					shot.move();
+					shot.draw();
+				} else {
+					shots.remove(i);
+				}
+			}
+		}
+	}
+
+	public void mousePressed() {
+		Weapon shot = new Weapon(mouseX, mouseY, true);
+		shot.p = this;
+		shots.add(shot);
 	}
 
 	/**
