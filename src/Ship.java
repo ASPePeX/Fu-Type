@@ -2,7 +2,7 @@ import processing.core.*;
 
 public class Ship {
 	static float x, y;
-	//w Waffen Array, ws Weapon Selected
+	// w Waffen Array, ws Weapon Selected
 	static int[] w = new int[3];
 	static int ws;
 	static PApplet p;
@@ -16,27 +16,10 @@ public class Ship {
 		ws = 0;
 	}
 
-	public static void moveUp() {
-		y = (float) (y - 1.5);
-	}
-	public static void moveDown() {
-		y = (float) (y + 1.5);
-	}
-	public static void moveLeft() {
-		x = (float) (x - 1.5);
-	}
-	public static void moveRight() {
-		x = (float) (x + 1.5);
-	}
-	
-	public void shoot() {
-		
-	}
-
-	
 	public static void draw() {
 		p.fill(255);
-		p.triangle(p.mouseX - 10, p.mouseY - 10, p.mouseX + 10, p.mouseY, p.mouseX - 10, p.mouseY + 10);
+		p.triangle(p.mouseX - 10, p.mouseY - 10, p.mouseX + 10, p.mouseY,
+				p.mouseX - 10, p.mouseY + 10);
 	}
 
 }
