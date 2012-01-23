@@ -1,10 +1,9 @@
 public class Enemy1 extends Enemy {
 
-	int sp;
 	Enemy1(int y_,int x_) {
 		super(y_,x_);
 		s = 5;
-		sp = 100; 
+		spawn = 120;
 	}
 	void draw() {
 		p.stroke(200);

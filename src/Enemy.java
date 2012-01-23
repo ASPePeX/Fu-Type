@@ -3,6 +3,7 @@ import processing.core.*;
 public class Enemy {
 
 	int x, y, s;
+	static float spawn,shoot;
 	static PApplet p;
 
 	Enemy(int y_,int x_) {

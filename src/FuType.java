@@ -9,8 +9,9 @@ public class FuType extends PApplet {
 	ArrayList enemy3 = new ArrayList();
 	Weapon shot;
 	Enemy1 foe1;
-//	Enemy2 foe2;
-//	Enemy3 foe3;
+
+	// Enemy2 foe2;
+	// Enemy3 foe3;
 
 	public void setup() {
 		noCursor();
@@ -47,6 +48,8 @@ public class FuType extends PApplet {
 				}
 			}
 		}
+
+		// Enemy movement and valitity checks
 		if (enemy1.size() > 0)
 			for (int i = 0; i < enemy1.size(); i++) {
 				Enemy1 foe1 = (Enemy1) enemy1.get(i);
@@ -58,11 +61,50 @@ public class FuType extends PApplet {
 				}
 			}
 
-		if (random(100) > 90) {
+		if (enemy2.size() > 0)
+			for (int i = 0; i < enemy2.size(); i++) {
+				Enemy2 foe2 = (Enemy2) enemy2.get(i);
+				if (foe2.x < width + 50 && foe2.x > 0 - 50) {
+					foe2.move();
+					foe2.draw();
+				} else {
+					enemy2.remove(i);
+				}
+			}
+		if (enemy3.size() > 0)
+			for (int i = 0; i < enemy3.size(); i++) {
+				Enemy3 foe3 = (Enemy3) enemy3.get(i);
+				if (foe3.x < width + 50 && foe3.x > 0 - 50) {
+					foe3.move();
+					foe3.draw();
+					// Shot probability check
+					if (random(1000) > 1000 - foe3.shoot) {
+						Weapon shot = new Weapon(foe3.x, foe3.y, false);
+						shot.p = this;
+						shots.add(shot);
+					}
+				} else {
+					enemy3.remove(i);
+				}
+			}
+
+		// Enemy spawns - if clause defines spawn rate
+		if (random(1000) > 980) {
 			Enemy1 foe1 = new Enemy1((int) random(height), width);
 			foe1.p = this;
 			enemy1.add(foe1);
 		}
+		if (random(1000) > 950) {
+			Enemy2 foe2 = new Enemy2((int) random(height), width);
+			foe2.p = this;
+			enemy2.add(foe2);
+		}
+		if (random(1000) > 980) {
+			Enemy3 foe3 = new Enemy3((int) random(height), width);
+			foe3.p = this;
+			enemy3.add(foe3);
+		}
+
 	}
 
 	public void mousePressed() {
