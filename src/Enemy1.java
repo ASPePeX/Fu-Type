@@ -1,3 +1,4 @@
+
 public class Enemy1 extends Enemy {
 
 	Enemy1(int y_, int x_) {

@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import processing.core.PApplet;
 
@@ -190,7 +191,7 @@ public class FuType extends PApplet {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PApplet.main(new String[] { "--bgcolor=#ECE9D8", "Fu-Type" });
+		PApplet.main(new String[] { "--bgcolor=#ECE9D8", "FuType" });
 	}
 
 }
