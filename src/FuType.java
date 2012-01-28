@@ -3,24 +3,22 @@ import processing.core.*;
 
 public class FuType extends PApplet {
 	BG bg[] = new BG[100];
+	Ship s1 = new Ship(100, 100);
 	ArrayList shots = new ArrayList();
 	ArrayList enemy1 = new ArrayList();
 	ArrayList enemy2 = new ArrayList();
 	ArrayList enemy3 = new ArrayList();
 	Weapon shot;
 	Enemy1 foe1;
-
-	// Enemy2 foe2;
-	// Enemy3 foe3;
+	Enemy2 foe2;
+	Enemy3 foe3;
 
 	public void setup() {
 		noCursor();
 		frameRate(30);
 		size(800, 600);
-		Ship s1 = new Ship(100, 100);
-		Ship.p = this;
 		// Weapon w[] = new Weapon[200];
-
+		Ship.p = this;
 		for (int i = 0; i < bg.length; i++) {
 			bg[i].p = this;
 			bg[i] = new BG();
@@ -49,13 +47,21 @@ public class FuType extends PApplet {
 			}
 		}
 
-		// Enemy movement and valitity checks
+		// Enemy movement, valitity- and collisionchecks
 		if (enemy1.size() > 0)
 			for (int i = 0; i < enemy1.size(); i++) {
 				Enemy1 foe1 = (Enemy1) enemy1.get(i);
 				if (foe1.x < width + 50 && foe1.x > 0 - 50) {
 					foe1.move();
 					foe1.draw();
+					for (int j = 0; j < shots.size(); j++) {
+						Weapon shot = (Weapon) shots.get(j);
+						if (dist(shot.x, shot.y, foe1.x, foe1.y) < 10
+								&& shot.player) {
+							enemy1.remove(i);
+							shots.remove(j);
+						}
+					}
 				} else {
 					enemy1.remove(i);
 				}
@@ -67,6 +73,15 @@ public class FuType extends PApplet {
 				if (foe2.x < width + 50 && foe2.x > 0 - 50) {
 					foe2.move();
 					foe2.draw();
+					for (int j = 0; j < shots.size(); j++) {
+						Weapon shot = (Weapon) shots.get(j);
+						if (dist(shot.x, shot.y, foe2.x, foe2.y) < 20
+								&& shot.player) {
+							enemy2.remove(i);
+							shots.remove(j);
+						}
+					}
+
 				} else {
 					enemy2.remove(i);
 				}
@@ -78,6 +93,14 @@ public class FuType extends PApplet {
 					foe3.move();
 					foe3.draw();
 					// Shot probability check
+					for (int j = 0; j < shots.size(); j++) {
+						Weapon shot = (Weapon) shots.get(j);
+						if (dist(shot.x, shot.y, foe3.x, foe3.y) < 15
+								&& shot.player) {
+							enemy3.remove(i);
+							shots.remove(j);
+						}
+					}
 					if (random(1000) > 1000 - foe3.shoot) {
 						Weapon shot = new Weapon(foe3.x, foe3.y, false);
 						shot.p = this;
@@ -87,14 +110,14 @@ public class FuType extends PApplet {
 					enemy3.remove(i);
 				}
 			}
-
+		// Collision Checks
 		// Enemy spawns - if clause defines spawn rate
 		if (random(1000) > 980) {
 			Enemy1 foe1 = new Enemy1((int) random(height), width);
 			foe1.p = this;
 			enemy1.add(foe1);
 		}
-		if (random(1000) > 950) {
+		if (random(1000) > 990) {
 			Enemy2 foe2 = new Enemy2((int) random(height), width);
 			foe2.p = this;
 			enemy2.add(foe2);
