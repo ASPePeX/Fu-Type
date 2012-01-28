@@ -3,7 +3,7 @@ public class Enemy1 extends Enemy {
 	Enemy1(int y_, int x_) {
 		super(y_, x_);
 		s = 5;
-		spawn = 120;
+		spawn = 10;
 		w = 100;
 		hb = 10;
 	}

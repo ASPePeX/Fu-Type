@@ -6,10 +6,10 @@ public class Enemy3 extends Enemy {
 	Enemy3(int y_, int x_) {
 		super(y_, x_);
 		s = 5;
-		spawn = 110;
-		shoot = 50;
+		spawn = 5;
+		shoot = 30;
 		w = 300;
-		hb =15;
+		hb = 15;
 	}
 
 	void draw() {

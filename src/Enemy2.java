@@ -8,14 +8,13 @@ public class Enemy2 extends Enemy {
 	Enemy2(int y_, int x_) {
 		super(y_, x_);
 		s = 5;
-		spawn = 100;
+		spawn = 5;
 		w = 150;
-		hb = 20;
+		hb = 28;
 	}
 
-	// movement in direction of the ship
-	// void move(int sx,int sy) {
 	void move() {
+		// movement in direction of the ship
 		ev = new PVector(x, y);
 		ev.sub(p.mouseX, p.mouseY, 0);
 		ev.limit(5);

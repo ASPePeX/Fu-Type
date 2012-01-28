@@ -1,7 +1,7 @@
 import processing.core.*;
 
 public class Enemy {
-
+// x, y, s = speed, w = worth (score), hb = hitbox, spawn(rate), shoot = shootprobability
 	int x, y, s;
 	static int w, hb;
 	static float spawn, shoot;
@@ -11,6 +11,7 @@ public class Enemy {
 		x = x_;
 		y = y_;
 		s = 1;
+		shoot = 0;
 	}
 
 	void move() {

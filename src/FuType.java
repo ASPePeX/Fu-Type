@@ -12,6 +12,8 @@ public class FuType extends PApplet {
 	Enemy1 foe1;
 	Enemy2 foe2;
 	Enemy3 foe3;
+	float skillMod = 1;
+	int frameCount = 0;
 
 	public void setup() {
 		noCursor();
@@ -27,7 +29,14 @@ public class FuType extends PApplet {
 	}
 
 	public void draw() {
+		frameCount++;
+		if (frameCount % 600 == 0) {
+			skillMod += 1;
+		}
+
 		background(0);
+		fill(255, 255, 255);
+		text("Skillmod: " + ((int) skillMod), 10, 60);
 		Ship.draw();
 
 		for (int i = 0; i < bg.length; i++) {
@@ -116,7 +125,6 @@ public class FuType extends PApplet {
 				if (foe3.x < width + 50 && foe3.x > 0 - 50) {
 					foe3.move();
 					foe3.draw();
-					// Shot probability check
 					for (int j = 0; j < shots.size(); j++) {
 						Weapon shot = (Weapon) shots.get(j);
 						if (dist(shot.x, shot.y, foe3.x, foe3.y) < foe3.hb
@@ -127,7 +135,8 @@ public class FuType extends PApplet {
 							foe3.drawHit();
 						}
 					}
-					if (random(1000) > 1000 - foe3.shoot) {
+					// Shot probability check
+					if ((((skillMod / 100) + 1) * random(1000)) > (1000 - foe3.shoot)) {
 						Weapon shot = new Weapon(foe3.x, foe3.y, false);
 						shot.p = this;
 						shots.add(shot);
@@ -145,17 +154,17 @@ public class FuType extends PApplet {
 		} // Player collision checks
 
 		// Enemy spawns - if clause defines spawn rate
-		if (random(1000) > 980) {
+		if ((((skillMod / 100) + 1) * random(1000)) > (1000 - Enemy1.spawn)) {
 			Enemy1 foe1 = new Enemy1((int) random(height), width);
 			foe1.p = this;
 			enemy1.add(foe1);
 		}
-		if (random(1000) > 990) {
+		if ((((skillMod / 100) + 1) * random(1000)) > (1000 - Enemy2.spawn)) {
 			Enemy2 foe2 = new Enemy2((int) random(height), width);
 			foe2.p = this;
 			enemy2.add(foe2);
 		}
-		if (random(1000) > 980) {
+		if ((((skillMod / 100) + 1) * random(1000)) > (1000 - Enemy3.spawn)) {
 			Enemy3 foe3 = new Enemy3((int) random(height), width);
 			foe3.p = this;
 			enemy3.add(foe3);

@@ -25,7 +25,10 @@ public class Weapon {
 
 	public void draw() {
 		p.noStroke();
-		p.fill(255, 0, 0);
+		if (player)
+			p.fill(0, 255, 0);
+		else
+			p.fill(255, 0, 0);
 		p.ellipse(x, y, 4, 4);
 	}
 

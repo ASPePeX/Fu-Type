@@ -2,7 +2,6 @@ import processing.core.*;
 
 public class Ship {
 	static float x, y;
-	// w Waffen Array, ws Weapon Selected
 	static int hb, score, scorehigh;
 	static PApplet p;
 
