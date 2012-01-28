@@ -1,6 +1,41 @@
 Fu-Type 
 
 Sidescrolling Furaum Action Shooter. Ein Raumschiff über den Bildschirm gesteuert und  
+wird von Gegnerhorden angegriffen. 
+
+Spielkram: 
+	- Maus Steuerung über das ganze Spielfeld 
+	- mehrere verschiedene Gegnertypen mit unterschiedlichem Verhalten
+		- Minen bleiben Statisch
+		- Ziehlsuchminen bewegen sich auf den Spieler zu
+		- Turrents, schießen
+
+Tech: 
+
+	Klassen:
+		- Raumschiff
+		- Waffen
+		- Gegner
+			- Verschidene Gegner durch Subklassen
+	
+	Kollision/Treffer werden von der Raumschiff- bzw. Gegnerklasse geprüft.
+	Raumschiff => Gegner, Raumschiff => Projektile
+	Gegner => Projektile
+	
+	Projektile haben eine Friend/Foe Variable die bestimmt wer sie
+	abgefeuert hat sowie die Flugrichtung.
+	
+
+Changes:
+Die WASD Steuerung wurde in Maussteuerung geändert weil die Abfrage der Tasten über die Processing funktionen
+sich am Betriebssystem orientiert was dafür einfach nicht zu gebrauchen ist.
+
+Verschiedene Waffen und Scriptsequenzen wurden wegen zu wenig Zeit (QQ) rausgenommen.  	
+
+
+============= OLD ==================
+
+Sidescrolling Furaum Action Shooter. Ein Raumschiff über den Bildschirm gesteuert und  
 wird von Gegnerhorden angegriffen. Mit dem immensen Waffenarsenal kämpft man um  
 die Freiheit des Furaums. 
 
