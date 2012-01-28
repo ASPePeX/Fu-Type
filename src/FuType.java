@@ -44,11 +44,17 @@ public class FuType extends PApplet {
 				} else {
 					shots.remove(i);
 				}
+				if (dist(shot.x, shot.y, mouseX, mouseY) < foe1.hb
+						&& !(shot.player)) {
+					shots.remove(i);
+					s1.score -= 500;
+					s1.drawHit();
+				}
 			}
 		}
 
 		// Enemy movement, valitity- and collisionchecks
-		if (enemy1.size() > 0)
+		if (enemy1.size() > 0) {
 			for (int i = 0; i < enemy1.size(); i++) {
 				Enemy1 foe1 = (Enemy1) enemy1.get(i);
 				if (foe1.x < width + 50 && foe1.x > 0 - 50) {
@@ -56,18 +62,27 @@ public class FuType extends PApplet {
 					foe1.draw();
 					for (int j = 0; j < shots.size(); j++) {
 						Weapon shot = (Weapon) shots.get(j);
-						if (dist(shot.x, shot.y, foe1.x, foe1.y) < 10
+						if (dist(shot.x, shot.y, foe1.x, foe1.y) < foe1.hb
 								&& shot.player) {
 							enemy1.remove(i);
 							shots.remove(j);
+							s1.score += foe1.w;
+							foe1.drawHit();
 						}
 					}
 				} else {
 					enemy1.remove(i);
 				}
-			}
+				if (dist(mouseX, mouseY, foe1.x, foe1.y) < (s1.hb + foe1.hb)) {
+					enemy1.remove(i);
+					s1.score -= foe1.w * 10;
+					foe1.drawHit();
+					s1.drawHit();
+				}
 
-		if (enemy2.size() > 0)
+			}
+		}
+		if (enemy2.size() > 0) {
 			for (int i = 0; i < enemy2.size(); i++) {
 				Enemy2 foe2 = (Enemy2) enemy2.get(i);
 				if (foe2.x < width + 50 && foe2.x > 0 - 50) {
@@ -75,18 +90,27 @@ public class FuType extends PApplet {
 					foe2.draw();
 					for (int j = 0; j < shots.size(); j++) {
 						Weapon shot = (Weapon) shots.get(j);
-						if (dist(shot.x, shot.y, foe2.x, foe2.y) < 20
+						if (dist(shot.x, shot.y, foe2.x, foe2.y) < foe2.hb
 								&& shot.player) {
 							enemy2.remove(i);
 							shots.remove(j);
+							s1.score += foe2.w;
+							foe2.drawHit();
 						}
 					}
 
 				} else {
 					enemy2.remove(i);
 				}
+				if (dist(mouseX, mouseY, foe2.x, foe2.y) < (s1.hb + foe2.hb)) {
+					enemy2.remove(i);
+					s1.score -= foe2.w * 10;
+					foe2.drawHit();
+					s1.drawHit();
+				}
 			}
-		if (enemy3.size() > 0)
+		}
+		if (enemy3.size() > 0) {
 			for (int i = 0; i < enemy3.size(); i++) {
 				Enemy3 foe3 = (Enemy3) enemy3.get(i);
 				if (foe3.x < width + 50 && foe3.x > 0 - 50) {
@@ -95,10 +119,12 @@ public class FuType extends PApplet {
 					// Shot probability check
 					for (int j = 0; j < shots.size(); j++) {
 						Weapon shot = (Weapon) shots.get(j);
-						if (dist(shot.x, shot.y, foe3.x, foe3.y) < 15
+						if (dist(shot.x, shot.y, foe3.x, foe3.y) < foe3.hb
 								&& shot.player) {
 							enemy3.remove(i);
 							shots.remove(j);
+							s1.score += foe3.w;
+							foe3.drawHit();
 						}
 					}
 					if (random(1000) > 1000 - foe3.shoot) {
@@ -109,8 +135,15 @@ public class FuType extends PApplet {
 				} else {
 					enemy3.remove(i);
 				}
+				if (dist(mouseX, mouseY, foe3.x, foe3.y) < (s1.hb + foe3.hb)) {
+					enemy3.remove(i);
+					s1.score -= foe3.w * 10;
+					foe3.drawHit();
+					s1.drawHit();
+				}
 			}
-		// Collision Checks
+		} // Player collision checks
+
 		// Enemy spawns - if clause defines spawn rate
 		if (random(1000) > 980) {
 			Enemy1 foe1 = new Enemy1((int) random(height), width);

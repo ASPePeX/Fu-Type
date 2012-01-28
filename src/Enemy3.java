@@ -8,6 +8,8 @@ public class Enemy3 extends Enemy {
 		s = 5;
 		spawn = 110;
 		shoot = 50;
+		w = 300;
+		hb =15;
 	}
 
 	void draw() {

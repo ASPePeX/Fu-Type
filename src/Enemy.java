@@ -3,6 +3,7 @@ import processing.core.*;
 public class Enemy {
 
 	int x, y, s;
+	static int w, hb;
 	static float spawn, shoot;
 	static PApplet p;
 
@@ -20,5 +21,11 @@ public class Enemy {
 		p.noStroke();
 		p.fill(200);
 		p.ellipse(x, y, 10, 10);
+	}
+	void drawHit() {
+		p.fill(255,255,0);
+		p.ellipse(x,y,40,40);
+		p.fill(255,0,0);
+		p.ellipse(x,y,20,20);
 	}
 }

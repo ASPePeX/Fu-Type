@@ -4,6 +4,8 @@ public class Enemy1 extends Enemy {
 		super(y_, x_);
 		s = 5;
 		spawn = 120;
+		w = 100;
+		hb = 10;
 	}
 
 	void draw() {
