@@ -17,7 +17,7 @@ public class Enemy2 extends Enemy {
 		// movement in direction of the ship
 		ev = new PVector(x, y);
 		ev.sub(p.mouseX, p.mouseY, 0);
-		ev.limit(5);
+		ev.limit(s);
 		x = x - (int) ev.x;
 		y = y - (int) ev.y;
 	}

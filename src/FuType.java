@@ -19,7 +19,6 @@ public class FuType extends PApplet {
 		noCursor();
 		frameRate(30);
 		size(800, 600);
-		// Weapon w[] = new Weapon[200];
 		Ship.p = this;
 		for (int i = 0; i < bg.length; i++) {
 			bg[i].p = this;
@@ -29,6 +28,7 @@ public class FuType extends PApplet {
 	}
 
 	public void draw() {
+		//skillMod increase
 		frameCount++;
 		if (frameCount % 600 == 0) {
 			skillMod += 1;
@@ -38,12 +38,14 @@ public class FuType extends PApplet {
 		fill(255, 255, 255);
 		text("Skillmod: " + ((int) skillMod), 10, 60);
 		Ship.draw();
-
+		
+		//Background
 		for (int i = 0; i < bg.length; i++) {
 			bg[i].draw();
 			bg[i].move();
 		}
 
+		//Shot movement and collision checks
 		if (shots.size() > 0) {
 			for (int i = 0; i < shots.size(); i++) {
 				Weapon shot = (Weapon) shots.get(i);
@@ -53,6 +55,7 @@ public class FuType extends PApplet {
 				} else {
 					shots.remove(i);
 				}
+				//Collision check - shot <=> ship 
 				if (dist(shot.x, shot.y, mouseX, mouseY) < foe1.hb
 						&& !(shot.player)) {
 					shots.remove(i);
@@ -82,6 +85,7 @@ public class FuType extends PApplet {
 				} else {
 					enemy1.remove(i);
 				}
+				//Collision check - ship <=> enemy 
 				if (dist(mouseX, mouseY, foe1.x, foe1.y) < (s1.hb + foe1.hb)) {
 					enemy1.remove(i);
 					s1.score -= foe1.w * 10;
@@ -111,6 +115,7 @@ public class FuType extends PApplet {
 				} else {
 					enemy2.remove(i);
 				}
+				//Collision check - ship <=> enemy 
 				if (dist(mouseX, mouseY, foe2.x, foe2.y) < (s1.hb + foe2.hb)) {
 					enemy2.remove(i);
 					s1.score -= foe2.w * 10;
@@ -144,6 +149,7 @@ public class FuType extends PApplet {
 				} else {
 					enemy3.remove(i);
 				}
+				//Collision check - ship <=> enemy 
 				if (dist(mouseX, mouseY, foe3.x, foe3.y) < (s1.hb + foe3.hb)) {
 					enemy3.remove(i);
 					s1.score -= foe3.w * 10;
@@ -151,9 +157,9 @@ public class FuType extends PApplet {
 					s1.drawHit();
 				}
 			}
-		} // Player collision checks
+		}
 
-		// Enemy spawns - if clause defines spawn rate
+		// Enemy spawns
 		if ((((skillMod / 100) + 1) * random(1000)) > (1000 - Enemy1.spawn)) {
 			Enemy1 foe1 = new Enemy1((int) random(height), width);
 			foe1.p = this;
@@ -172,6 +178,7 @@ public class FuType extends PApplet {
 
 	}
 
+	//mouse shooting
 	public void mousePressed() {
 		Weapon shot = new Weapon(mouseX, mouseY, true);
 		shot.p = this;
