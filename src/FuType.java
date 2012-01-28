@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import processing.core.*;
+import processing.core.PApplet;
 
 public class FuType extends PApplet {
 	BG bg[] = new BG[100];

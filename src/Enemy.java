@@ -1,4 +1,4 @@
-import processing.core.*;
+import processing.core.PApplet;
 
 public class Enemy {
 // x, y, s = speed, w = worth (score), hb = hitbox, spawn(rate), shoot = shootprobability
